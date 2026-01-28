@@ -117,6 +117,17 @@ a, button, .btn, input, [role="button"], .menu-toggle, .lang-toggle a, .video-th
   object-fit: contain;
 }
 
+/* Mobile / touch: hide custom cursor so it is not visible */
+@media (max-width: 768px), (hover: none) {
+  .custom-cursor {
+    display: none !important;
+  }
+  body,
+  body * {
+    cursor: none !important;
+  }
+}
+
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;

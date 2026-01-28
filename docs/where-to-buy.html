@@ -337,6 +337,13 @@
       margin-bottom: 20px;
       font-size: 1.4rem;
     }
+    .store-name-link {
+      color: inherit;
+      text-decoration: none;
+    }
+    .store-name-link:hover {
+      text-decoration: underline;
+    }
 
     .store-card p {
       margin-bottom: 10px;
@@ -609,7 +616,7 @@
         <div class="stores-grid">
           <!-- Store 1 - Rakija House (2 lokacije) -->
           <div class="store-card" data-name="Rakija House" data-multiple-locations="true">
-            <h3>Rakija House</h3>
+            <h3><a href="https://www.google.com/maps/search/?api=1&query=Rakija+House+Novi+Sad" target="_blank" rel="noopener noreferrer" class="store-name-link">Rakija House</a></h3>
             <div class="store-detail">
               <strong data-i18n="where-type">Type:</strong>
               <span data-i18n="where-type-spirits">Premium Spirits Store</span>
@@ -637,7 +644,7 @@
 
           <!-- Store 2 - Supernova Wine (Vino.rs) -->
           <div class="store-card" data-lat="44.8221503" data-lng="20.4838798" data-name="Supernova Wine">
-            <h3>Supernova Wine</h3>
+            <h3><a href="https://www.google.com/maps/dir/?api=1&destination=44.8221503,20.4838798" target="_blank" rel="noopener noreferrer" class="store-name-link">Supernova Wine</a></h3>
             <div class="store-detail">
               <strong data-i18n="where-type">Type:</strong>
               <span data-i18n="where-type-wine">Wine & Spirits Shop</span>
@@ -665,7 +672,7 @@
 
           <!-- Store 3 - The Box Shop (3 lokacije) -->
           <div class="store-card" data-name="The Box Shop" data-multiple-locations="true">
-            <h3>The Box Shop</h3>
+            <h3><a href="https://www.google.com/maps/search/?api=1&query=The+Box+Shop+Novi+Sad" target="_blank" rel="noopener noreferrer" class="store-name-link">The Box Shop</a></h3>
             <div class="store-detail">
               <strong data-i18n="where-type">Type:</strong>
               <span data-i18n="where-type-spirits">Premium Spirits Store</span>
@@ -685,7 +692,7 @@
 
           <!-- Store 4 - Etiketa Wine & Spirits -->
           <div class="store-card" data-lat="44.0143" data-lng="20.9164" data-name="Etiketa Wine & Spirits">
-            <h3>Etiketa Wine & Spirits</h3>
+            <h3><a href="https://www.google.com/maps/dir/?api=1&destination=44.0143,20.9164" target="_blank" rel="noopener noreferrer" class="store-name-link">Etiketa Wine & Spirits</a></h3>
             <div class="store-detail">
               <strong data-i18n="where-type">Type:</strong>
               <span data-i18n="where-type-wine">Wine & Spirits Shop</span>
@@ -928,10 +935,11 @@
     // Add markers (initially all visible)
     const markers = stores.map(store => {
       const marker = L.marker([store.lat, store.lng], { icon: goldIcon }).addTo(map);
+      const mapsDirUrl = `https://www.google.com/maps/dir/?api=1&destination=${store.lat},${store.lng}`;
       let popupContent = `
         <div style="text-align: center; min-width: 180px;">
           <strong style="color: #BC8B0B; font-size: 14px;">${store.name}</strong><br>
-          <span style="font-size: 12px;">${store.address}</span><br>`;
+          <a href="${mapsDirUrl}" target="_blank" rel="noopener noreferrer" style="color: #BC8B0B; font-size: 12px; text-decoration: none;">${store.address}</a><br>`;
       if (store.phone) {
         popupContent += `<a href="tel:${store.phone}" style="color: #BC8B0B; font-size: 12px;">${store.phone}</a><br>`;
       }
@@ -991,10 +999,11 @@
       document.querySelector('.map-container').scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
 
-    // Store card click handler
+    // Store card click handler (skip when clicking store name link – it opens Google Maps)
     document.querySelectorAll('.store-card').forEach(card => {
       card.addEventListener('click', function(e) {
         if (e.target.closest('.map-link')) return;
+        if (e.target.closest('.store-name-link')) return;
         const lat = parseFloat(this.dataset.lat);
         const lng = parseFloat(this.dataset.lng);
         const name = this.dataset.name;

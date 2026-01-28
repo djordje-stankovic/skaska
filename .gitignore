@@ -1,3 +1,8 @@
 # Old large videos (over GitHub 100 MB) – do not commit originals
 docs/videos/Izjava Marko.m4v
 docs/videos/Izjava Zoran.m4v
+
+# Lokalna dokumentacija – ne commitovati
+docs/EMAIL_TEMPLATE_EXAMPLE.html
+docs/EMAIL_SETUP_INSTRUCTIONS.md
+docs/SEO-GUIDE.md

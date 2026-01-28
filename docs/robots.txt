@@ -1,17 +1,12 @@
-# Robots.txt for skaskabrandy.com
-# Allow all search engine crawlers
+# Robots.txt for Skaska (GitHub Pages)
+# https://djordje-stankovic.github.io/skaska/
 
 User-agent: *
 Allow: /
 
-# Sitemap location
-Sitemap: https://skaskabrandy.com/sitemap.xml
+# Sitemap – ovaj URL unesi u Google Search Console
+Sitemap: https://djordje-stankovic.github.io/skaska/sitemap.xml
 
-# Disallow admin or private directories (if any)
-Disallow: /admin/
-Disallow: /private/
-
-# Allow all major search engines
 User-agent: Googlebot
 Allow: /
 
