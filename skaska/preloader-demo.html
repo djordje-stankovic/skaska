@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Preloader Demo - Skaska</title>
+  <style>
+    /* CSS Variables */
+    :root {
+      --gold-primary: #BC8B0B;
+      --black: #000000;
+      --font-body: 'Josefin Sans', sans-serif;
+    }
+
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--black);
+      color: #fff;
+      overflow: hidden; /* Prevent scrolling during preloader */
+    }
+
+    /* =============================================
+       PRELOADER
+       ============================================= */
+    .preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--black);
+      background-image: url('materjal/VAL04129.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 10000;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+    
+    /* Overlay za tamnjenje pozadine ako je potrebno */
+    .preloader::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.3);
+      z-index: -1;
+    }
+
+    .preloader.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .preloader-logo {
+      animation: preloader-pulse 2s ease-in-out infinite;
+      max-width: 90vw; /* Responsive - ne prelazi 90% širine ekrana */
+      height: auto;
+    }
+
+    @keyframes preloader-pulse {
+      0%, 100% { 
+        transform: scale(1); 
+        opacity: 0.8; 
+      }
+      50% { 
+        transform: scale(1.05); 
+        opacity: 1; 
+      }
+    }
+
+    .preloader-counter {
+      font-family: var(--font-body);
+      font-size: clamp(80px, 15vw, 107px);
+      color: #FFFFFF;
+    }
+
+  </style>
+</head>
+<body>
+  <!-- Preloader -->
+  <div class="preloader">
+    <img src="images/logo-skaska.png" alt="Skaska" class="preloader-logo" style="width: 140px; height: auto; margin-bottom: 20px; opacity: 0.8;">
+    <span class="preloader-counter">0</span>
+  </div>
+
+  <!-- Pouring Sound Effect -->
+  <audio id="pouringSound" preload="auto">
+    <source src="videos/382911__reasanka__pouring-drink-sound-effect-by-rea.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    /* =============================================
+       POURING SOUND EFFECT
+       ============================================= */
+    let pouringSoundElement = null;
+
+    function playPouringSound() {
+      const pouringSound = document.getElementById('pouringSound');
+      if (!pouringSound) return;
+      
+      pouringSoundElement = pouringSound;
+      
+      // Play the sound
+      pouringSound.volume = 0.5; // Set volume to 50%
+      pouringSound.play().catch(() => {
+        // Handle autoplay restrictions silently
+        // Modern browsers require user interaction before playing audio
+      });
+    }
+
+    function stopPouringSound() {
+      if (pouringSoundElement) {
+        pouringSoundElement.pause();
+        pouringSoundElement.currentTime = 0;
+      }
+    }
+
+    /* =============================================
+       PRELOADER
+       ============================================= */
+    function initPreloader() {
+      const preloader = document.querySelector('.preloader');
+      const counter = document.querySelector('.preloader-counter');
+
+      if (!preloader) return;
+
+      // Start playing pouring sound when preloader starts
+      playPouringSound();
+
+      // Check if page is already loaded
+      const checkLoaded = () => {
+        if (document.readyState === 'complete') {
+          // Page is loaded, animate quickly
+          let count = 0;
+          const interval = setInterval(() => {
+            count += 5; // Jump by 5% for faster animation
+            if (count > 100) count = 100;
+            if (counter) counter.textContent = count;
+
+            if (count >= 100) {
+              clearInterval(interval);
+              setTimeout(() => {
+                preloader.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+                stopPouringSound();
+                
+                // Dispatch custom event when preloader is hidden
+                window.dispatchEvent(new CustomEvent('preloaderHidden'));
+              }, 200);
+            }
+          }, 10); // 10ms interval = faster animation
+        } else {
+          // Page still loading, wait a bit then animate
+          window.addEventListener('load', () => {
+            let count = 0;
+            const interval = setInterval(() => {
+              count += 5;
+              if (count > 100) count = 100;
+              if (counter) counter.textContent = count;
+
+              if (count >= 100) {
+                clearInterval(interval);
+                setTimeout(() => {
+                  preloader.classList.add('hidden');
+                  document.body.style.overflow = 'auto';
+                  stopPouringSound();
+                  
+                  // Dispatch custom event when preloader is hidden
+                  window.dispatchEvent(new CustomEvent('preloaderHidden'));
+                }, 200);
+              }
+            }, 10);
+          });
+        }
+      };
+
+      checkLoaded();
+    }
+
+    // Initialize preloader when DOM is ready
+    document.addEventListener('DOMContentLoaded', function() {
+      initPreloader();
+    });
+  </script>
+</body>
+</html>

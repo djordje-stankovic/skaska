@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="O Skaska Destileriji - Upoznajte priču iza naše premium šljivovice. Zanatstvo, ideja, vizija i proces.">
+  <title>O Nama - Skaska</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="../images/logo/s-logo-gold.png">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600&family=Josefin+Sans:wght@200;300;400&family=Roboto:wght@300;400&family=Work+Sans:wght@300;400&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="../css/styles.css">
+  <style>
+    /* =============================================
+       LOGO ROLL ANIMATION - About Page
+       ============================================= */
+    .logo-roll-animated {
+      position: relative;
+      overflow: visible;
+    }
+
+    .logo-roll-animated .logo-icon {
+      animation: logoRoll 2.5s cubic-bezier(0.4, 0, 0.2, 1) 0.5s forwards;
+      opacity: 0;
+      transform-origin: center center;
+    }
+
+    .logo-roll-animated .logo-text {
+      animation: logoTextImpact 2.5s ease 0.5s forwards;
+      opacity: 0;
+      transform-origin: left center;
+    }
+
+    @keyframes logoRoll {
+      0% {
+        opacity: 1;
+        transform: translateX(-200px) rotate(-360deg) scale(0.8);
+      }
+      60% {
+        opacity: 1;
+        transform: translateX(0) rotate(0deg) scale(1);
+      }
+      65% {
+        opacity: 1;
+        transform: translateX(5px) rotate(5deg) scale(1.05);
+      }
+      70% {
+        opacity: 1;
+        transform: translateX(0) rotate(0deg) scale(1);
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(0) rotate(0deg) scale(1);
+      }
+    }
+
+    @keyframes logoTextImpact {
+      0% {
+        opacity: 0;
+        transform: translateX(0);
+      }
+      50% {
+        opacity: 0;
+        transform: translateX(0);
+      }
+      60% {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      65% {
+        opacity: 1;
+        transform: translateX(15px);
+      }
+      75% {
+        opacity: 1;
+        transform: translateX(15px);
+      }
+      85% {
+        opacity: 1;
+        transform: translateX(5px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    /* Disable animation after it runs once */
+    .logo-roll-animated.animation-done .logo-icon,
+    .logo-roll-animated.animation-done .logo-text {
+      animation: none;
+      opacity: 1;
+      transform: none;
+    }
+    .about-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .about-section.reverse {
+      direction: rtl;
+    }
+    .about-section.reverse > * {
+      direction: ltr;
+    }
+    .about-media {
+      position: relative;
+    }
+    .about-media img {
+      width: 100%;
+      height: auto;
+      border: 1px solid rgba(188, 139, 11, 0.3);
+    }
+    .about-media iframe,
+    .about-media video {
+      width: 100%;
+      aspect-ratio: 16/9;
+      border: 1px solid rgba(188, 139, 11, 0.3);
+    }
+    .about-text h2 {
+      color: var(--gold-primary);
+      margin-bottom: 10px;
+      font-size: 0.9rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+    .about-text h3 {
+      margin-bottom: 25px;
+      font-size: 2rem;
+    }
+    .about-text p {
+      margin-bottom: 20px;
+      line-height: 1.8;
+    }
+    @media (max-width: 992px) {
+      .about-section {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .about-section.reverse {
+        direction: ltr;
+      }
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px;
+      margin-top: 50px;
+    }
+    @media (max-width: 768px) {
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    .stat-item {
+      text-align: center;
+      padding: 30px 20px;
+      border: 1px solid rgba(188, 139, 11, 0.2);
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .stat-item:hover {
+      transform: scale(1.05);
+      border-color: rgba(188, 139, 11, 0.45);
+      box-shadow: 0 4px 20px rgba(188, 139, 11, 0.15);
+    }
+    .stat-number {
+      font-family: var(--font-heading);
+      font-size: 3rem;
+      color: var(--gold-primary);
+      display: block;
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+    .stat-label {
+      font-family: var(--font-menu);
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-gray);
+    }
+    /* Subtitle under hero – same size as other page subtitles (e.g. Commitment) */
+    .about-hero-subtitle {
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: 1.1rem !important;
+      line-height: 1.8;
+      letter-spacing: 0.02em;
+      margin: 0 0 40px 0;
+      color: rgba(255, 255, 255, 0.95);
+    }
+  </style>
+</head>
+<body>
+  <!-- Instant age check -->
+  <script>
+    if(localStorage.getItem('skaska-age-verified')==='true'){
+      document.body.classList.add('age-verified');
+    }
+  </script>
+
+  <!-- Preloader -->
+  <div class="preloader">
+    <img src="../images/logo-skaska.png" alt="Skaska" class="preloader-logo" style="width: 60px; height: 60px; margin-bottom: 20px; opacity: 0.8;">
+    <span class="preloader-counter">0</span>
+  </div>
+
+  <!-- Header -->
+  <header class="header">
+    <a href="index.html" class="logo logo-roll-animated">
+      <img src="../images/logo/s-logo-gold.png" alt="Skaska" class="logo-icon">
+      <img src="../images/Skaska-white.png" alt="Skaska" class="logo-text">
+    </a>
+
+    <!-- Language Toggle -->
+    <div class="lang-toggle">
+      <a href="#" data-lang="en">EN</a>
+      <span>|</span>
+      <a href="#" data-lang="sr" class="active">SR</a>
+    </div>
+
+    <div class="menu-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </header>
+
+  <!-- Navigation Overlay -->
+  <nav class="nav-overlay">
+    <ul class="nav-menu">
+      <li><a href="index.html">Skaska</a></li>
+      <li><a href="about.html" class="active">Priča o šljivi</a></li>
+      <li><a href="commitment.html">Posvećenost</a></li>
+      <li><a href="gallery.html">Galerija</a></li>
+      <li><a href="distillery.html">Destilerija</a></li>
+      <li><a href="news.html">Vesti</a></li>
+      <li><a href="where-to-buy.html">Pronađi Skasku</a></li>
+      <li><a href="contact.html">Kontakt</a></li>
+    </ul>
+  </nav>
+
+  <!-- Fixed Background Image -->
+  <div class="image-background-fixed" style="background-image: url('../images/DJI_0865.JPG');"></div>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1 class="hero-title" data-i18n="about-hero-title">Bajka o šljivi</h1>
+    </div>
+
+    <div class="scroll-indicator">
+      <span>Skroluj</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- Subtitle block (same place as Commitment intro text) -->
+  <section class="section section-transparent">
+    <div class="section-overlay" style="background: rgba(0,0,0,0.3);"></div>
+    <div class="section-content container">
+      <div class="col-text animate-on-scroll from-top" style="max-width: 900px; margin: 0 auto; text-align: center;">
+        <p class="about-hero-subtitle" data-i18n="about-hero-desc">
+          Skaska je zajednička vizija ljudi koje povezuju poreklo, znanje i ljubav prema srpskoj šljivovici.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIZIJA Section (Marko) -->
+  <section class="section section-transparent">
+    <div class="section-overlay" style="background: rgba(0,0,0,0.4);"></div>
+    <div class="section-content container">
+      <div class="about-section animate-on-scroll">
+        <div class="about-media">
+          <div class="video-thumbnail" data-video-src="../videos/Izjava Marko.mp4" style="width: 100%; aspect-ratio: 16/9; position: relative; cursor: pointer;">
+            <img src="../images/MarkoSlika.png" alt="Video thumbnail" style="width: 100%; height: 100%; object-fit: cover;">
+            <div class="video-thumbnail-overlay">
+              <div class="play-button"></div>
+            </div>
+          </div>
+        </div>
+        <div class="about-text">
+          <h2 data-i18n="about-vision">Vizija</h2>
+          <p data-i18n="about-vision-p1">
+            Jedan od osnivača i pokretača brenda, Marko Popović postavio je jasan pravac razvoja Skaske – vrhunski kvalitet bez kompromisa. Njegova vizija spaja porodično nasleđe, savremene standarde i snažan identitet brenda.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CRAFTMANSHIP Section (Zoran) -->
+  <section class="section section-transparent">
+    <div class="section-overlay" style="background: rgba(0,0,0,0.4);"></div>
+    <div class="section-content container">
+      <div class="about-section reverse animate-on-scroll">
+        <div class="about-media">
+          <div class="video-thumbnail" data-video-src="../videos/Izjava Zoran.mp4" style="width: 100%; aspect-ratio: 16/9; position: relative; cursor: pointer;">
+            <video style="width: 100%; height: 100%; object-fit: cover;" muted loop playsinline preload="metadata">
+              <source src="../videos/Izjava Zoran.mp4" type="video/mp4">
+            </video>
+            <div class="video-thumbnail-overlay">
+              <div class="play-button"></div>
+            </div>
+          </div>
+        </div>
+        <div class="about-text">
+          <h2 data-i18n="about-craftsmanship">Zanatstvo</h2>
+          <p data-i18n="about-craftsmanship-p1">
+            Jedan od osnivača brenda i četvrta generacija majstora destilacije, Zoran Jevtović je odgovoran za karakter Skaske. Njegovo iskustvo i osećaj za meru vode pažljivo kontrolisanu dvostruku destilaciju i stvaranje prepoznatljivog, elegantnog profila rakije.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- IDEJA Section (Andrej) -->
+  <section class="section section-transparent">
+    <div class="section-overlay" style="background: rgba(0,0,0,0.35);"></div>
+    <div class="section-content container">
+      <div class="about-section animate-on-scroll">
+        <div class="about-media">
+          <img src="../images/Andrej.JPG" alt="Imanje Skaska">
+        </div>
+        <div class="about-text">
+          <h2 data-i18n="about-idea">Nasleđe</h2>
+          <p data-i18n="about-idea-p1">
+            Jedan od osnivača, Andreja Bošković donosi duboku povezanost sa zemljom i razumevanje da vrhunska rakija počinje od vrhunskog ploda. Njegov pristup oslanja se na poštovanje prirode i strpljenje koje prava šljivovica zahteva.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCES Section -->
+  <section class="section section-transparent">
+    <div class="section-overlay" style="background: rgba(0,0,0,0.35);"></div>
+    <div class="section-content container">
+      <div class="about-section reverse animate-on-scroll">
+        <div class="about-media">
+          <img src="../images/gallery/Destilacija.JPG" alt="Proces destilacije">
+        </div>
+        <div class="about-text">
+          <h2 data-i18n="about-process">Proces</h2>
+          <p data-i18n="about-process-p1">
+            Skaska nastaje u selu Bare u Šumadiji, od pažljivo negovane sorte šljive Stanley, koja se uzgaja u našim voćnjacima na tri specifične mikro lokacije: Gaj, Aleksića i Kovionica, pod stručnim nadzorom Aleksandra Uroševića, diplomiranog agronoma. Nakon kasne septembarske berbe, plod se pažljivo pasira i prepušta sopstvenoj spontanoj fermentaciji u prohromskim tankovima, bez ičega dodatog i bez ičega oduzetog. Kada se proces prirodno privede kraju, kljuk ide na dvostruku destilaciju u zanatski izrađenim bakarnim kazanima. Destilat zatim sazreva najmanje pet godina u francuskim hrastovim barik buradima, gde razvija punoću, mekoću i složen aromatski profil. Spoj prirode, znanja i vremena daje Skaski njen prepoznatljiv karakter.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section (Bottom) -->
+  <section class="section section-transparent">
+    <div class="section-overlay" style="background: rgba(0,0,0,0.4);"></div>
+    <div class="section-content container">
+      <div class="stats-grid animate-on-scroll" style="max-width: 900px; margin: 0 auto;">
+        <div class="stat-item">
+          <span class="stat-number">2017.</span>
+          <span class="stat-label" data-i18n="about-stat-founded">Osnovano</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">5+</span>
+          <span class="stat-label" data-i18n="about-stat-aging">Godina odležavanja</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">1.100</span>
+          <span class="stat-label" data-i18n="about-stat-trees">Stabala šljiva</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">10K</span>
+          <span class="stat-label" data-i18n="about-stat-bottles">Flaša godišnje</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-container">
+      <div class="footer-logo-section">
+        <div class="footer-logo-image">
+          <img src="../images/skaska-bare-gold.png" alt="SKASKA BARE">
+        </div>
+      </div>
+
+      <div class="footer-content">
+        <div class="footer-links">
+          <a href="index.html" data-i18n="nav-home">Skaska</a>
+          <a href="about.html" data-i18n="nav-about">Bajka o šljivi</a>
+          <a href="commitment.html" data-i18n="nav-commitment">Posvećenost</a>
+          <a href="gallery.html" data-i18n="nav-gallery">Galerija</a>
+          <a href="distillery.html" data-i18n="nav-distillery">Destilerija</a>
+          <a href="news.html" data-i18n="nav-news">Vesti</a>
+          <a href="where-to-buy.html" data-i18n="nav-where">Pronađi Skasku</a>
+          <a href="contact.html" data-i18n="nav-contact">Kontakt</a>
+        </div>
+      </div>
+
+      <div class="footer-medals">
+        <div class="medal-wrapper">
+          <img src="../images/medals/medal-1.png" alt="Award Medal" class="medal-hover-trigger" data-medal="1">
+        </div>
+        <div class="medal-wrapper">
+          <img src="../images/medals/medal-2.png" alt="Award Medal" class="medal-hover-trigger" data-medal="2">
+        </div>
+        <div class="medal-wrapper">
+          <img src="../images/medals/medal-3.png" alt="Award Medal" class="medal-hover-trigger" data-medal="3">
+        </div>
+        <div class="medal-wrapper">
+          <img src="../images/medals/balkan_competition.png" alt="Award Medal" class="medal-hover-trigger" data-medal="4">
+        </div>
+      </div>
+
+      <p class="footer-definition" data-i18n="footer-definition">
+        Skaska (ref. Rečnik) – usmena pripovetka sa elementima fantastike koja se prenosi sa kolena na koleno
+      </p>
+
+      <p class="footer-copyright" data-i18n="copyright">
+        &copy; 2026 <span class="footer-brand">Skaska</span> destilerija doo. Sva prava zadržana.
+      </p>
+    </div>
+  </footer>
+
+  <!-- Age Verification Modal -->
+  <div class="age-modal" id="ageModal">
+    <div class="age-modal-content">
+      <div class="age-modal-main">
+        <div class="age-modal-logo-wrapper">
+          <div class="age-modal-logo-text">
+            <img src="../images/Skaska-vratnice.png" alt="Skaska" class="age-modal-logo-graphic">
+          </div>
+        </div>
+        <p class="age-modal-text">You must be of legal purchase age to enter this website.</p>
+        <div class="age-modal-buttons">
+          <div class="age-modal-btn yes" id="ageYes">da</div>
+          <div class="age-modal-btn no" id="ageNo">ne</div>
+        </div>
+        <p class="age-modal-disclaimer">
+          By pressing "YES" and entering this site I agree to the Terms & Conditions and Privacy Policy.
+        </p>
+      </div>
+      <div class="age-modal-denied">
+        <div class="age-modal-denied-icon">🚫</div>
+        <h3>Access Denied</h3>
+        <p>You must be of legal drinking age to enter this website.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Video Modal -->
+  <div class="video-modal" id="videoModal">
+    <div class="video-modal-content">
+      <span class="video-modal-close">&times;</span>
+      <video id="modalVideo" controls>
+        Vaš pregledač ne podržava video tag.
+      </video>
+    </div>
+  </div>
+
+  <script src="../js/main.js"></script>
+  <script>
+    // Mark logo animation as done after it completes
+    setTimeout(function() {
+      var logo = document.querySelector('.logo-roll-animated');
+      if (logo) {
+        logo.classList.add('animation-done');
+      }
+    }, 3000);
+  </script>
+</body>
+</html>

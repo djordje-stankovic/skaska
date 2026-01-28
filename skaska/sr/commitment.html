@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Naša posvećenost - Prava tradicija nije u istorijskim činjenicama niti običajima već u pravim vrednostima koje se prenose.">
+  <title>Posvećenost - Skaska</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="../images/logo/s-logo-gold.png">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600&family=Josefin+Sans:wght@200;300;400&family=Roboto:wght@300;400&family=Work+Sans:wght@300;400&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="../css/styles.css">
+  <style>
+    /* =============================================
+       LOGO DEDICATION ANIMATION - Commitment Page
+       ============================================= */
+    .logo-dedication-animated {
+      position: relative;
+      overflow: visible;
+    }
+
+    .logo-dedication-animated::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(188, 139, 11, 0.4) 0%, transparent 70%);
+      animation: logoGlow 2.5s ease-out 0.5s forwards;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .logo-dedication-animated .logo-icon {
+      animation: logoDedicationAppear 2.5s cubic-bezier(0.4, 0, 0.2, 1) 0.5s forwards;
+      opacity: 0;
+      transform-origin: center center;
+      filter: drop-shadow(0 0 0px rgba(188, 139, 11, 0));
+    }
+
+    .logo-dedication-animated .logo-text {
+      animation: logoTextDedicationAppear 2.5s ease-out 0.5s forwards;
+      opacity: 0;
+      transform-origin: left center;
+    }
+
+    @keyframes logoGlow {
+      0% {
+        width: 0;
+        height: 0;
+        opacity: 0;
+      }
+      40% {
+        width: 200px;
+        height: 200px;
+        opacity: 0.6;
+      }
+      60% {
+        width: 250px;
+        height: 250px;
+        opacity: 0.4;
+      }
+      100% {
+        width: 300px;
+        height: 300px;
+        opacity: 0;
+      }
+    }
+
+    @keyframes logoDedicationAppear {
+      0% {
+        opacity: 0;
+        transform: scale(0.5) translateY(20px);
+        filter: drop-shadow(0 0 0px rgba(188, 139, 11, 0));
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1.05) translateY(0);
+        filter: drop-shadow(0 0 15px rgba(188, 139, 11, 0.6));
+      }
+      70% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+        filter: drop-shadow(0 0 10px rgba(188, 139, 11, 0.4));
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+        filter: drop-shadow(0 0 0px rgba(188, 139, 11, 0));
+      }
+    }
+
+    @keyframes logoTextDedicationAppear {
+      0% {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      60% {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      80% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Disable animation after it runs once */
+    .logo-dedication-animated.animation-done .logo-icon,
+    .logo-dedication-animated.animation-done .logo-text {
+      animation: none;
+      opacity: 1;
+      transform: none;
+      filter: none;
+    }
+
+    .logo-dedication-animated.animation-done::before {
+      display: none;
+    }
+  </style>
+</head>
+<body data-page="commitment">
+  <!-- Instant age check - prevents modal flash -->
+  <script>
+    if(localStorage.getItem('skaska-age-verified')==='true'){
+      document.body.classList.add('age-verified');
+    }
+  </script>
+  <!-- Preloader -->
+  <div class="preloader">
+    <span class="preloader-counter">0</span>
+  </div>
+
+  <!-- Header -->
+  <header class="header">
+    <a href="index.html" class="logo logo-dedication-animated">
+      <img src="../images/logo/s-logo-gold.png" alt="Skaska" class="logo-icon">
+      <img src="../images/Skaska-white.png" alt="Skaska" class="logo-text">
+    </a>
+
+    <!-- Language Toggle -->
+    <div class="lang-toggle">
+      <a href="../commitment.html">EN</a>
+      <span>|</span>
+      <a href="commitment.html" class="active">SR</a>
+    </div>
+
+    <div class="menu-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </header>
+
+  <!-- Navigation Overlay -->
+  <nav class="nav-overlay">
+    <ul class="nav-menu">
+      <li><a href="index.html">Skaska</a></li>
+      <li><a href="about.html">Bajka o šljivi</a></li>
+      <li><a href="commitment.html" class="active">Posvećenost</a></li>
+      <li><a href="gallery.html">Galerija</a></li>
+      <li><a href="distillery.html">Destilerija</a></li>
+      <li><a href="news.html">Vesti</a></li>
+      <li><a href="where-to-buy.html">Pronađi Skasku</a></li>
+      <li><a href="contact.html">Kontakt</a></li>
+    </ul>
+  </nav>
+
+  <!-- Fixed Background Image -->
+  <div class="image-background-fixed" style="background-image: url('../images/hero-commitment.jpg');"></div>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1 class="hero-title">Posvećenost</h1>
+    </div>
+
+    <div class="scroll-indicator">
+      <span>Skroluj</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- Main Content Section -->
+  <section class="section section-transparent">
+    <div class="section-overlay" style="background: rgba(0,0,0,0.3);"></div>
+    <div class="section-content container">
+      <div class="col-text animate-on-scroll from-top" style="max-width: 900px; margin: 0 auto; text-align: center;">
+        
+        <h2 style="margin-bottom: 40px;" data-i18n="commitment-main-title">
+          Dragocenost istinske tradicije ne krije se u istorijskim činjenicama ili običajima, već u vrednostima koje se prenose sa kolena na koleno.
+        </h2>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gde Section -->
+  <section id="where" class="section section-transparent">
+    <div class="section-overlay" style="background: rgba(0,0,0,0.3);"></div>
+    <div class="section-content container">
+      <div class="two-col-61-39">
+        <div class="col-text animate-on-scroll from-left">
+          <h2>Gde</h2>
+          <p>
+            Rakija proizvedena u srcu Srbije, u Šumadiji, poznatoj po izvornoj šljivovici i pitomim predelima. Po ljudima, po gostoprimstvu i srdačnosti.
+          </p>
+        </div>
+        <div class="video-thumbnail animate-on-scroll from-right" data-video-src="../videos/Glavni video fix.mp4" data-video-poster="../images/gallery/292A9390.JPG">
+          <img src="../images/gallery/292A9390.JPG" alt="Video thumbnail" style="width: 100%; height: 100%; object-fit: cover;">
+          <div class="video-thumbnail-overlay">
+            <div class="play-button"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Šta i Kako Section -->
+  <section id="what" class="section section-transparent">
+    <div class="section-overlay" style="background: rgba(0,0,0,0.3);"></div>
+    <div class="section-content container">
+      <div class="two-col-61-39">
+        <div class="col-text animate-on-scroll from-left">
+          <h2>Šta i Kako</h2>
+          <p>
+            Rakija od šljive, proizvedena uz poštovanje tradicije koja neguje kulturu dobrodošlice prema putniku namerniku kroz neskrivenu radost domaćina da je u prilici ponuditi sve najbolje što ima.
+          </p>
+        </div>
+        <div class="video-thumbnail animate-on-scroll from-right" data-video-src="../videos/Sta i Kako final.mp4" data-video-poster="../images/brandy-glass.jpg">
+          <img src="../images/brandy-glass.jpg" alt="Video thumbnail" style="width: 100%; height: 100%; object-fit: cover;">
+          <div class="video-thumbnail-overlay">
+            <div class="play-button"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Zašto Section -->
+  <section id="why" class="section section-transparent">
+    <div class="section-overlay" style="background: rgba(0,0,0,0.3);"></div>
+    <div class="section-content container">
+      <div class="two-col" style="align-items: center; gap: 40px;">
+        <div class="col-text animate-on-scroll from-left" style="flex: 0 0 35%;">
+          <h2>Zašto</h2>
+          <p>
+            Ima toliko ponosa i dostojanstva u činu kojim naši ljudi slave nova prijateljstva, nazdravljajući rakijom prožetom predanjem o vrhunskim vrednostima, o čestitosti i predanosti. Sa ponosom slavimo ovo nasledje kroz proces proizvodnje šumadijske šljivovice "Skaska".
+          </p>
+        </div>
+
+        <div class="animate-on-scroll from-right" style="flex: 1; display: flex; flex-direction: column; gap: 30px;">
+          <div style="text-align: center;">
+            <h3 style="margin-bottom: 15px; font-size: 1.2rem;">Duža verzija</h3>
+            <div class="video-thumbnail" data-video-src="../videos/Izjave komplet final.mp4" data-video-poster="../images/production-detail.jpg" style="width: 100%; max-width: 600px; height: 340px; margin: 0 auto;">
+              <img src="../images/production-detail.jpg" alt="Video thumbnail" style="width: 100%; height: 100%; object-fit: cover;">
+              <div class="video-thumbnail-overlay">
+                <div class="play-button"></div>
+              </div>
+            </div>
+          </div>
+
+          <div style="text-align: center;">
+            <h3 style="margin-bottom: 15px; font-size: 1.2rem;">Kraća verzija</h3>
+            <div class="video-thumbnail" data-video-src="../videos/ZASTO final sa prevodom.mp4" data-video-poster="../images/production-detail-small.jpg" style="width: 100%; max-width: 600px; height: 340px; margin: 0 auto;">
+              <img src="../images/production-detail-small.jpg" alt="Video thumbnail" style="width: 100%; height: 100%; object-fit: cover;">
+              <div class="video-thumbnail-overlay">
+                <div class="play-button"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-container">
+      <!-- SKASKA BARE Logo -->
+      <div class="footer-logo-section">
+        <div class="footer-logo-image">
+          <img src="../images/skaska-bare-gold.png" alt="SKASKA BARE">
+        </div>
+      </div>
+
+      <div class="footer-content">
+        <div class="footer-links">
+          <a href="index.html" data-i18n="nav-home">Skaska</a>
+          <a href="about.html" data-i18n="nav-about">Bajka o šljivi</a>
+          <a href="commitment.html" data-i18n="nav-commitment">Posvećenost</a>
+          <a href="gallery.html" data-i18n="nav-gallery">Galerija</a>
+          <a href="distillery.html" data-i18n="nav-distillery">Destilerija</a>
+          <a href="news.html" data-i18n="nav-news">Vesti</a>
+          <a href="where-to-buy.html" data-i18n="nav-where">Pronađi Skasku</a>
+          <a href="contact.html" data-i18n="nav-contact">Kontakt</a>
+        </div>
+      </div>
+
+      <!-- Medals -->
+      <div class="footer-medals">
+        <div class="medal-wrapper">
+          <img src="../images/medals/medal-1.png" alt="Award Medal" class="medal-hover-trigger" data-medal="1">
+          <div class="medal-submenu" data-medal="1">
+            <a href="https://londonspiritscompetition.com/en/winner-companies/2021/tribalija-ltd-2256.htm" target="_blank">London Spirits Competition 2021<br><span class="medal-details">Silver Medal<br>89 Points</span></a>
+            <a href="https://londonspiritscompetition.com/en/winner-companies/2025/tribalija-ltd-2256.htm" target="_blank">London Spirits Competition 2025<br><span class="medal-details">Silver Medal<br>93 Points</span></a>
+          </div>
+        </div>
+        <div class="medal-wrapper">
+          <img src="../images/medals/medal-2.png" alt="Award Medal" class="medal-hover-trigger" data-medal="2">
+          <div class="medal-submenu" data-medal="2">
+            <a href="https://usaspiritsratings.com/en/winner-brands/spirits/2023/tribalija-doo-1341/skaska-plum-brandy-4147.htm" target="_blank">USA Spirits Ratings 2023<br><span class="medal-details">Silver Medal<br>88 Points</span></a>
+          </div>
+        </div>
+        <div class="medal-wrapper">
+          <img src="../images/medals/medal-3.png" alt="Award Medal" class="medal-hover-trigger" data-medal="3">
+          <div class="medal-submenu medal-3-submenu" data-medal="3">
+            <a href="#" class="medal-3-link">2022 Silver<br><span class="medal-details">Craft Spirits Berlin</span></a>
+          </div>
+        </div>
+        <div class="medal-wrapper">
+          <img src="../images/medals/balkan_competition.png" alt="Award Medal" class="medal-hover-trigger" data-medal="4">
+          <div class="medal-submenu" data-medal="4">
+            <a href="#" class="medal-4-link">Balkan Competition<br><span class="medal-details">Award</span></a>
+          </div>
+        </div>
+      </div>
+
+      <p class="footer-definition" data-i18n="footer-definition">
+        Skaska (ref. Rečnik) – usmena pripovetka sa elementima fantastike koja se prenosi sa kolena na koleno
+      </p>
+
+      <p class="footer-copyright" data-i18n="copyright">
+        &copy; 2026 <span class="footer-brand">Skaska</span> destilerija doo. Sva prava zadržana.
+      </p>
+    </div>
+  </footer>
+
+  <!-- Age Verification Modal -->
+  <div class="age-modal" id="ageModal">
+    <div class="age-modal-content">
+      <div class="age-modal-main">
+        <div class="age-modal-logo-wrapper">
+          <div class="age-modal-logo-text">
+            <img src="../images/Skaska-vratnice.png" alt="Skaska" class="age-modal-logo-graphic">
+          </div>
+        </div>
+        <p class="age-modal-text">You must be of legal purchase age to enter this website.</p>
+        <div class="age-modal-buttons">
+          <div class="age-modal-btn yes" id="ageYes">da</div>
+          <div class="age-modal-btn no" id="ageNo">ne</div>
+        </div>
+        <p class="age-modal-disclaimer">
+          By pressing "YES" and entering this site I agree to the Terms & Conditions and Privacy Policy.
+        </p>
+      </div>
+      <div class="age-modal-denied">
+        <div class="age-modal-denied-icon">🚫</div>
+        <h3>Access Denied</h3>
+        <p>You must be of legal drinking age to enter this website.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Medal Modal -->
+  <div class="medal-modal" id="medalModal">
+    <div class="medal-modal-content">
+      <span class="medal-modal-close">&times;</span>
+      <img src="../images/IMG_0978.jpg" alt="Award Certificate">
+    </div>
+  </div>
+
+  <!-- Video Modal -->
+  <div class="video-modal" id="videoModal">
+    <div class="video-modal-content">
+      <span class="video-modal-close">&times;</span>
+      <video id="modalVideo" controls>
+        Vaš pregledač ne podržava video tag.
+      </video>
+    </div>
+  </div>
+
+  <script src="../js/main.js"></script>
+  <script>
+    // Mark logo animation as done after it completes
+    setTimeout(function() {
+      var logo = document.querySelector('.logo-dedication-animated');
+      if (logo) {
+        logo.classList.add('animation-done');
+      }
+    }, 3000);
+  </script>
+</body>
+</html>
