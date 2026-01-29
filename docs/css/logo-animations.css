@@ -715,13 +715,24 @@
   display: none;
 }
 
+/* Finalni logo u flow-u – ista visina headera kao na ostalim stranicama */
+.logo-contact-animated.animation-done {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  width: auto;
+  flex-shrink: 0;
+  margin-right: auto;
+}
+
 .logo-contact-animated.animation-done .final-logo-contact {
   animation: none;
   opacity: 1;
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  position: static;
+  left: auto;
+  top: auto;
+  transform: none;
+  pointer-events: auto;
 }
 
 .logo-contact-animated.animation-done .final-logo-contact .logo-icon,
