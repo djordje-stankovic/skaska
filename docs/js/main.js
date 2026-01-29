@@ -1315,7 +1315,7 @@ const translations = {
     // About page
     'about-hero-title': 'Bajka o šljivi',
     'about-craftsmanship': 'Umetnost zanata',
-    'about-craftsmanship-p1': 'Jedan od osnivača brenda i četvrta generacija majstora destilacije, Zoran Jevtović je odgovoran za karakter Skaske. Njegovo iskustvo i osećaj za meru vode pažljivo kontrolisanu dvostruku destilaciju i stvaranje prepoznatljivog, elegantnog profila rakije.',
+    'about-craftsmanship-p1': 'Jedan od osnivača brenda i četvrta generacija majstora destilacije, Zoran Jevtović je odgovoran za karakter Skaske. Njegovo iskustvo i filigranska senzorika vode pažljivo kontrolisanu dvostruku destilaciju i stvaranje prepoznatljivog, elegantnog profila rakije.',
     'about-idea': 'Nasleđe',
     'about-idea-p1': 'Jedan od osnivača, Andreja Bošković donosi duboku povezanost sa zemljom i razumevanje da vrhunska rakija počinje od vrhunskog ploda. Njegov pristup oslanja se na poštovanje prirode i strpljenje koje prava šljivovica zahteva.',
     'about-vision': 'Vizija',
