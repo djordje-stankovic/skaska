@@ -1774,9 +1774,22 @@ section.section-transparent:has(.stores-grid) {
   visibility: visible;
 }
 
+/* Kontrole (strelice, X) u posebnom sloju da se odmah vide, bez čekanja na repaint */
+.lightbox-close,
+.lightbox-nav {
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+.lightbox-nav {
+  transform: translateY(-50%) translateZ(0);
+}
+
 .lightbox-content {
   max-width: 90%;
   max-height: 90%;
+  position: relative;
+  z-index: 1;
 }
 
 .lightbox-content img {
@@ -1803,12 +1816,13 @@ section.section-transparent:has(.stores-grid) {
 .lightbox-nav {
   position: absolute;
   top: 50%;
-  transform: translateY(-50%);
   font-size: 50px;
   color: var(--gold-secondary);
   cursor: pointer;
   padding: 20px;
   transition: var(--transition-fast);
+  z-index: 10001;
+  pointer-events: auto;
 }
 
 .lightbox-nav:hover {

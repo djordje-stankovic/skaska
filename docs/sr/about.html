@@ -429,7 +429,7 @@
     <div class="section-overlay" style="background: rgba(0,0,0,0.35);"></div>
     <div class="section-content container">
       <div class="about-section about-section-process reverse animate-on-scroll">
-        <div class="about-media">
+        <div class="about-media about-process-gallery-main">
           <img src="../images/gallery/Destilacija.JPG" alt="Proces destilacije">
         </div>
         <div class="about-process-thumbs" data-gallery-group="about-process-4">
@@ -576,17 +576,19 @@
       }
     }, 3000);
 
-    // Lightbox za 4 slike u About Proces sekciji – strelice levo/desno
+    // Lightbox za 5 slika u About Proces sekciji (velika + 4 ispod) – strelice levo/desno
     (function() {
       var lightbox = document.getElementById('aboutProcessLightbox');
       if (!lightbox) return;
-      var thumbs = document.querySelectorAll('.about-process-thumbs[data-gallery-group="about-process-4"] img');
-      if (thumbs.length === 0) return;
+      var mainImg = document.querySelector('.about-section-process .about-media img');
+      var thumbs = document.querySelectorAll('.about-section-process .about-process-thumbs img');
+      var allImgEls = mainImg ? [mainImg].concat(Array.from(thumbs)) : Array.from(thumbs);
+      if (allImgEls.length === 0) return;
       var lightboxImg = lightbox.querySelector('.lightbox-content img');
       var closeBtn = lightbox.querySelector('.lightbox-close');
       var prevBtn = lightbox.querySelector('.lightbox-prev');
       var nextBtn = lightbox.querySelector('.lightbox-next');
-      var images = Array.from(thumbs).map(function(img) { return img.src; });
+      var images = allImgEls.map(function(img) { return img.src; });
       var currentIndex = 0;
 
       function updateImg() {
@@ -605,7 +607,7 @@
         document.body.style.overflow = 'auto';
       }
 
-      thumbs.forEach(function(img, i) {
+      allImgEls.forEach(function(img, i) {
         img.style.cursor = 'pointer';
         img.addEventListener('click', function() {
           currentIndex = i;
