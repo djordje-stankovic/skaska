@@ -423,16 +423,16 @@
         <div class="about-media">
           <img src="images/gallery/Destilacija.JPG" alt="Distillation process">
         </div>
-        <div class="about-process-thumbs">
-          <img src="images/gallery/Kazan 1000l.jpg" alt="Copper still" class="thumb-vertical">
-          <img src="images/gallery/DJI_0828.JPG" alt="Šumadija landscape">
-          <img src="images/gallery/292A9390.JPG" alt="Skaska estate">
-          <img src="images/gallery/Podrum.jpg" alt="Cellar">
+        <div class="about-process-thumbs" data-gallery-group="about-process-4">
+          <img src="images/gallery/Kazan 1000l.jpg" alt="Copper still" class="thumb-vertical" loading="lazy">
+          <img src="images/gallery/DJI_0828.JPG" alt="Šumadija landscape" loading="lazy">
+          <img src="images/gallery/292A9390.JPG" alt="Skaska estate" loading="lazy">
+          <img src="images/gallery/Podrum.jpg" alt="Cellar" loading="lazy">
         </div>
         <div class="about-text">
           <h2 data-i18n="about-process">Process</h2>
           <p data-i18n="about-process-p1">
-            Skaska is crafted in the village of Bare in the Shumadia region, from carefully grown Stanley plums cultivated in our orchards across three distinct locations: Gaj, Aleksića and Kovionica, under the expert supervision of agricultural engineer Aleksandar Urošević. Following the late September harvest, the fruit is gently crushed and left to its own spontaneous fermentation in stainless steel tanks, with nothing added and nothing taken away. When the process naturally comes to an end, the plum puree makes its way to double distillation in artisanal copper stills. The spirit then matures for a minimum of five years in French oak barrique barrels, where it develops depth, smoothness, and aromatic complexity. The union of nature, knowledge and time gives Skaska its distinctive character.
+            Skaska is crafted in Bare in Shumadia, from carefully grown Stanley plums cultivated in our orchards across three distinct locations: Gaj, Aleksića and Kovionica, under the expert supervision of agricultural engineer Aleksandar Urošević. Following the late September harvest, the fruit is gently crushed and left to its own spontaneous fermentation in stainless steel tanks, with nothing added and nothing taken away. When the process naturally comes to an end, the plum puree makes its way to double distillation in artisanal copper stills. The spirit then matures for a minimum of five years in French oak barrique barrels, where it develops depth, smoothness, and aromatic complexity. The union of nature, knowledge and time gives Skaska its distinctive character.
           </p>
         </div>
       </div>
@@ -543,6 +543,16 @@
     </div>
   </div>
 
+  <!-- Lightbox za 4 slike u Process sekciji (strelice levo/desno) -->
+  <div class="lightbox" id="aboutProcessLightbox">
+    <span class="lightbox-close">&times;</span>
+    <span class="lightbox-nav lightbox-prev">&#10094;</span>
+    <span class="lightbox-nav lightbox-next">&#10095;</span>
+    <div class="lightbox-content">
+      <img src="" alt="Gallery image">
+    </div>
+  </div>
+
   <script src="js/main.js"></script>
   <script>
     // Mark logo animation as done after it completes
@@ -552,6 +562,58 @@
         logo.classList.add('animation-done');
       }
     }, 3000);
+
+    // Lightbox za 4 slike u About Process sekciji – strelice levo/desno
+    (function() {
+      var lightbox = document.getElementById('aboutProcessLightbox');
+      if (!lightbox) return;
+      var thumbs = document.querySelectorAll('.about-process-thumbs[data-gallery-group="about-process-4"] img');
+      if (thumbs.length === 0) return;
+      var lightboxImg = lightbox.querySelector('.lightbox-content img');
+      var closeBtn = lightbox.querySelector('.lightbox-close');
+      var prevBtn = lightbox.querySelector('.lightbox-prev');
+      var nextBtn = lightbox.querySelector('.lightbox-next');
+      var images = Array.from(thumbs).map(function(img) { return img.src; });
+      var currentIndex = 0;
+
+      function updateImg() {
+        if (images[currentIndex]) lightboxImg.src = images[currentIndex];
+      }
+      function showPrev() {
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        updateImg();
+      }
+      function showNext() {
+        currentIndex = (currentIndex + 1) % images.length;
+        updateImg();
+      }
+      function closeLightbox() {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      }
+
+      thumbs.forEach(function(img, i) {
+        img.style.cursor = 'pointer';
+        img.addEventListener('click', function() {
+          currentIndex = i;
+          updateImg();
+          lightbox.classList.add('active');
+          document.body.style.overflow = 'hidden';
+        });
+      });
+      closeBtn.addEventListener('click', closeLightbox);
+      lightbox.addEventListener('click', function(e) {
+        if (e.target === lightbox) closeLightbox();
+      });
+      prevBtn.addEventListener('click', function(e) { e.stopPropagation(); showPrev(); });
+      nextBtn.addEventListener('click', function(e) { e.stopPropagation(); showNext(); });
+      document.addEventListener('keydown', function(e) {
+        if (!lightbox.classList.contains('active')) return;
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowLeft') showPrev();
+        if (e.key === 'ArrowRight') showNext();
+      });
+    })();
   </script>
 </body>
 </html>

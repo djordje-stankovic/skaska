@@ -417,7 +417,7 @@
         <div class="about-text">
           <h2 data-i18n="about-idea">Nasleđe</h2>
           <p data-i18n="about-idea-p1">
-            Jedan od osnivača, Andreja Bošković donosi duboku povezanost sa zemljom i razumevanje da vrhunska rakija počinje od vrhunskog ploda. Njegov pristup oslanja se na poštovanje prirode i strpljenje koje prava šljivovica zahteva.
+            Jedan od osnivača, Andreja Bošković donosi duboku povezanost sa zemljom i razumevanje da vrhunska rakija počinje od vrhunskog ploda. Njegov pristup oslanja se na poštovanje prirode i strpljenje koje autentična šljivovica zahteva.
           </p>
         </div>
       </div>
@@ -432,11 +432,11 @@
         <div class="about-media">
           <img src="../images/gallery/Destilacija.JPG" alt="Proces destilacije">
         </div>
-        <div class="about-process-thumbs">
-          <img src="../images/gallery/Kazan 1000l.jpg" alt="Bakarni kazan" class="thumb-vertical">
-          <img src="../images/gallery/DJI_0828.JPG" alt="Šumadija">
-          <img src="../images/gallery/292A9390.JPG" alt="Imanje Skaska">
-          <img src="../images/gallery/Podrum.jpg" alt="Podrum">
+        <div class="about-process-thumbs" data-gallery-group="about-process-4">
+          <img src="../images/gallery/Kazan 1000l-min.jpg" alt="Bakarni kazan" class="thumb-vertical" loading="lazy">
+          <img src="../images/gallery/DJI_0828.JPG" alt="Šumadija" loading="lazy">
+          <img src="../images/gallery/292A9390.JPG" alt="Imanje Skaska" loading="lazy">
+          <img src="../images/gallery/Podrum.jpg" alt="Podrum" loading="lazy">
         </div>
         <div class="about-text">
           <h2 data-i18n="about-process">Proces</h2>
@@ -556,6 +556,16 @@
     </div>
   </div>
 
+  <!-- Lightbox za 4 slike u Proces sekciji (strelice levo/desno) -->
+  <div class="lightbox" id="aboutProcessLightbox">
+    <span class="lightbox-close">&times;</span>
+    <span class="lightbox-nav lightbox-prev">&#10094;</span>
+    <span class="lightbox-nav lightbox-next">&#10095;</span>
+    <div class="lightbox-content">
+      <img src="" alt="Slika iz galerije">
+    </div>
+  </div>
+
   <script src="../js/main.js"></script>
   <script>
     // Mark logo animation as done after it completes
@@ -565,6 +575,58 @@
         logo.classList.add('animation-done');
       }
     }, 3000);
+
+    // Lightbox za 4 slike u About Proces sekciji – strelice levo/desno
+    (function() {
+      var lightbox = document.getElementById('aboutProcessLightbox');
+      if (!lightbox) return;
+      var thumbs = document.querySelectorAll('.about-process-thumbs[data-gallery-group="about-process-4"] img');
+      if (thumbs.length === 0) return;
+      var lightboxImg = lightbox.querySelector('.lightbox-content img');
+      var closeBtn = lightbox.querySelector('.lightbox-close');
+      var prevBtn = lightbox.querySelector('.lightbox-prev');
+      var nextBtn = lightbox.querySelector('.lightbox-next');
+      var images = Array.from(thumbs).map(function(img) { return img.src; });
+      var currentIndex = 0;
+
+      function updateImg() {
+        if (images[currentIndex]) lightboxImg.src = images[currentIndex];
+      }
+      function showPrev() {
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        updateImg();
+      }
+      function showNext() {
+        currentIndex = (currentIndex + 1) % images.length;
+        updateImg();
+      }
+      function closeLightbox() {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      }
+
+      thumbs.forEach(function(img, i) {
+        img.style.cursor = 'pointer';
+        img.addEventListener('click', function() {
+          currentIndex = i;
+          updateImg();
+          lightbox.classList.add('active');
+          document.body.style.overflow = 'hidden';
+        });
+      });
+      closeBtn.addEventListener('click', closeLightbox);
+      lightbox.addEventListener('click', function(e) {
+        if (e.target === lightbox) closeLightbox();
+      });
+      prevBtn.addEventListener('click', function(e) { e.stopPropagation(); showPrev(); });
+      nextBtn.addEventListener('click', function(e) { e.stopPropagation(); showNext(); });
+      document.addEventListener('keydown', function(e) {
+        if (!lightbox.classList.contains('active')) return;
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowLeft') showPrev();
+        if (e.key === 'ArrowRight') showNext();
+      });
+    })();
   </script>
 </body>
 </html>

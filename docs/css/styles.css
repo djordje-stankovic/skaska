@@ -3945,6 +3945,21 @@ body[data-page="commitment"] #why {
   }
 }
 
+/* Gallery – Mellowdy of Bonhomie / Magic of nature – naslov i podnaslov centrirani na mobilnoj */
+@media (max-width: 768px) {
+  .gallery-mellowdy-section .mellowdy-heading {
+    text-align: center !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  .gallery-mellowdy-section .mellowdy-heading h2,
+  .gallery-mellowdy-section .mellowdy-heading p {
+    text-align: center;
+  }
+}
+
 /* Distillery page - quote section styles */
 .ognjen-quote-section {
   text-align: left !important;

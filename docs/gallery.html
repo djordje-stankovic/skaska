@@ -230,27 +230,27 @@
   </section>
 
   <!-- Mellowdy of Bonhomie Section -->
-  <section class="section section-transparent">
+  <section class="section section-transparent gallery-mellowdy-section">
     <div class="section-overlay" style="background: rgba(0,0,0,0.35);"></div>
     <div class="section-content container">
-      <div class="col-text animate-on-scroll from-top" style="text-align: center; margin-bottom: 40px;">
+      <div class="col-text animate-on-scroll from-top mellowdy-heading" style="text-align: center; margin-bottom: 40px;">
         <h2 style="font-style: italic;" data-i18n="gallery-mellowdy-title">Mellowdy of Bonhomie</h2>
         <p style="color: var(--gold-primary); font-size: 1.3rem;" data-i18n="gallery-mellowdy-subtitle">
           Magic of nature and people
         </p>
       </div>
       
-      <div class="gallery-grid-simple">
-        <div class="gallery-item animate-on-scroll from-left">
+      <div class="gallery-grid-simple gallery-mellowdy-grid">
+        <div class="gallery-item animate-on-scroll from-left" data-gallery-group="mellowdy-4">
           <img src="images/gallery/292A9366.JPG" alt="Bonhomie" loading="lazy">
         </div>
-        <div class="gallery-item animate-on-scroll scale-up">
+        <div class="gallery-item animate-on-scroll scale-up" data-gallery-group="mellowdy-4">
           <img src="images/gallery/292A9390.JPG" alt="Bonhomie" loading="lazy">
         </div>
-        <div class="gallery-item animate-on-scroll from-right">
+        <div class="gallery-item animate-on-scroll from-right" data-gallery-group="mellowdy-4">
           <img src="images/gallery/292A9421.JPG" alt="Bonhomie" loading="lazy">
         </div>
-        <div class="gallery-item animate-on-scroll from-left">
+        <div class="gallery-item animate-on-scroll from-left" data-gallery-group="mellowdy-4">
           <img src="images/gallery/Podrum.jpg" alt="Bonhomie" loading="lazy">
         </div>
         <div class="gallery-item animate-on-scroll scale-up">
@@ -345,7 +345,7 @@
 
   <script src="js/main.js"></script>
   <script>
-    // Simple gallery lightbox
+    // Simple gallery lightbox (group of 4 in Mellowdy: arrows cycle only within that group)
     (function() {
       const lightbox = document.querySelector('.lightbox');
       if (!lightbox) return;
@@ -356,22 +356,23 @@
       const nextBtn = lightbox.querySelector('.lightbox-next');
       
       const galleryItems = document.querySelectorAll('.gallery-grid-simple .gallery-item img');
-      let allImages = Array.from(galleryItems).map(img => img.src);
+      const allImages = Array.from(galleryItems).map(img => img.src);
+      let currentImages = allImages;
       let currentIndex = 0;
 
       function updateLightboxImage() {
-        if (allImages[currentIndex]) {
-          lightboxImg.src = allImages[currentIndex];
+        if (currentImages[currentIndex]) {
+          lightboxImg.src = currentImages[currentIndex];
         }
       }
 
       function showPrev() {
-        currentIndex = (currentIndex - 1 + allImages.length) % allImages.length;
+        currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
         updateLightboxImage();
       }
 
       function showNext() {
-        currentIndex = (currentIndex + 1) % allImages.length;
+        currentIndex = (currentIndex + 1) % currentImages.length;
         updateLightboxImage();
       }
 
@@ -384,7 +385,17 @@
       galleryItems.forEach((img, index) => {
         img.style.cursor = 'pointer';
         img.addEventListener('click', () => {
-          currentIndex = index;
+          const group = img.closest('[data-gallery-group]');
+          if (group) {
+            const groupId = group.getAttribute('data-gallery-group');
+            const groupItems = document.querySelectorAll('[data-gallery-group="' + groupId + '"] img');
+            currentImages = Array.from(groupItems).map(i => i.src);
+            currentIndex = currentImages.indexOf(img.src);
+            if (currentIndex < 0) currentIndex = 0;
+          } else {
+            currentImages = allImages;
+            currentIndex = index;
+          }
           updateLightboxImage();
           lightbox.classList.add('active');
           document.body.style.overflow = 'hidden';
